@@ -3,7 +3,7 @@ import { Youtube, Play, Users, BarChart3, MessageSquare, StickyNote } from "luci
 
 const Home = () => {
   const handleLogin = () => {
-    window.location.href = "http://localhost:5000/api/auth/google";
+    window.location.href = "https://cactro-fsd-test.onrender.com//api/auth/google";
   };
 
   return (
