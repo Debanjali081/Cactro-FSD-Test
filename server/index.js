@@ -45,9 +45,9 @@ app.use("/api/video", videoRoutes);
 
 app.use("/api/events", eventRoutes);
 
-app.use(express.static(path.join(__dirname, "client/dist")));
+app.use(express.static(path.join(__dirname, "../client/dist")));
 app.get("*", (req, res) =>
-  res.sendFile(path.resolve(__dirname, "client", "dist", "index.html"))
+  res.sendFile(path.resolve(__dirname, "../client", "dist", "index.html"))
 );
 
 
