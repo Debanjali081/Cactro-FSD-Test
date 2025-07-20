@@ -242,19 +242,7 @@ Google OAuth is simulated with a single POST endpoint for ease of testing. Actua
 * Token-based auth (JWT)
 * Add comment + reply YouTube API endpoints
 
----
 
-## 💡 License
 
-MIT
 
-```
-
----
-
-✅ This completes the full backend setup, including middleware, testing flow, and a professional-grade `README.md`.
-
-Would you now like to:
-- Proceed with the **frontend (React + Vite)** setup?
-- Or package and send the full backend as a `.zip` file?
 ```
