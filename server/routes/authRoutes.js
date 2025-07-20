@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const passport = require('passport');
 
-const CLIENT_HOME_URL = process.env.CLIENT_HOME_URL || 'http://localhost:5173';
+const CLIENT_HOME_URL = process.env.CLIENT_HOME_URL || 'https://cactro-fsd-test.onrender.com';
 
 
 // Start Google OAuth
