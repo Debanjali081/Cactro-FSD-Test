@@ -44,7 +44,7 @@ app.use("/api/video", videoRoutes);
 
 app.use("/api/events", eventRoutes);
 
-const __dirname = path.resolve();
+
 
 
 // Serve static files from the 'client/dist' directory
