@@ -48,11 +48,11 @@ app.use("/api/events", eventRoutes);
 
 
 // Serve static files from the 'client/dist' directory
-app.use(express.static(path.join(__dirname, "client/dist")));
+app.use(express.static(path.join(__dirname, "../client/dist")));
 
 // Serve index.html on all unmatched routes
 app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "client/dist", "index.html"));
+  res.sendFile(path.join(__dirname, "../client/dist", "index.html"));
 });
 
 
