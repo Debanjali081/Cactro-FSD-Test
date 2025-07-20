@@ -1,7 +1,6 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const passport = require('passport');
-const cookie=require('cookie-parser')
 const path=require('path')
 const session = require('express-session');
 require('dotenv').config();
