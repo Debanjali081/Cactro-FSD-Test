@@ -3,7 +3,9 @@ const passport = require('passport');
 
 const CLIENT_HOME_URL = process.env.CLIENT_HOME_URL || 'http://localhost:5173';
 
+
 // Start Google OAuth
+console.log("GET /google");
 router.get(
   '/google',
   passport.authenticate('google', {
@@ -12,6 +14,7 @@ router.get(
 );
 
 // Callback after Google login
+console.log("GET /google/callback");
 router.get(
   '/google/callback',
   passport.authenticate('google', { failureRedirect: '/' }),
@@ -21,12 +24,10 @@ router.get(
   }
 );
 
-// Current logged-in user info
 router.get('/current_user', (req, res) => {
   res.send(req.user);
 });
 
-// Logout
 router.get('/logout', (req, res) => {
   req.logout(() => {
     res.send({ success: true });

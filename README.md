@@ -240,9 +240,4 @@ Google OAuth is simulated with a single POST endpoint for ease of testing. Actua
 
 * Integrate full Google OAuth flow
 * Token-based auth (JWT)
-* Add comment + reply YouTube API endpoints
-
-
-
-
-```
+* Add comment + reply YouTube API endpoint.

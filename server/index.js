@@ -1,6 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const passport = require('passport');
+const cookie=require('cookie-parser')
 const path=require('path')
 const session = require('express-session');
 require('dotenv').config();
@@ -30,13 +31,18 @@ app.use(
   })
 );
 
+
 app.use(passport.initialize());
+
 app.use(passport.session());
 
 // Routes
+
 app.use("/api/auth", authRoutes);
 app.use("/api/notes", noteRoutes);
+
 app.use("/api/video", videoRoutes);
+
 app.use("/api/events", eventRoutes);
 
 app.use(express.static(path.join(__dirname, "client/dist")));
