@@ -55,7 +55,7 @@ const addComment = async (req, res) => {
   const { videoId } = req.params;
   const userId = req.headers["x-user-id"];
   const { text } = req.body;
-  const comment = await commentDao.addComment(videoId, userId, text);
+  const comment = await commentDao.createComment({ videoId, userId, text });
   res.status(201).json(comment);
 };
 
