@@ -16,7 +16,7 @@ const Dashboard = () => {
 
   const handleLogout = () => {
     axios
-      .get("/logout")
+      .get("/api/auth/logout")
       .then(() => {
         localStorage.removeItem("userId");
         localStorage.removeItem("access_token");
