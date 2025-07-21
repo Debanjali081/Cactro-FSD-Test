@@ -1,4 +1,5 @@
 const axios = require("axios");
+const mongoose = require("mongoose");
 const commentDao = require("../dao/commentDao");
 const noteDao = require("../dao/noteDao");
 const eventService = require("../services/eventService");
@@ -7,11 +8,13 @@ const getVideoDetails = async (req, res) => {
   const videoId = req.params.videoId;
   try {
     const apiKey = process.env.YOUTUBE_API_KEY;
+    console.log("YOUTUBE_API_KEY:", apiKey);
     const response = await axios.get("https://www.googleapis.com/youtube/v3/videos", {
       params: { part: "snippet", id: videoId, key: apiKey },
     });
     res.json(response.data);
   } catch (err) {
+    console.error("Error in getVideoDetails:", err);
     res.status(500).json({ error: "Failed to fetch video details" });
   }
 };
@@ -62,7 +65,7 @@ const addComment = async (req, res) => {
 const deleteComment = async (req, res) => {
   const { commentId } = req.params;
   const userId = req.headers["x-user-id"];
-  await commentDao.deleteComment(commentId, userId);
+  await commentDao.deleteCommentById(commentId, userId);
   res.status(204).send();
 };
 
@@ -70,7 +73,7 @@ const replyToComment = async (req, res) => {
   const { commentId } = req.params;
   const userId = req.headers["x-user-id"];
   const { text } = req.body;
-  const reply = await commentDao.addReply(commentId, userId, text);
+  const reply = await commentDao.replyToComment({ commentId, userId, replyText: text });
   res.status(201).json(reply);
 };
 
