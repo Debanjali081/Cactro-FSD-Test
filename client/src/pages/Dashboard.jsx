@@ -73,20 +73,21 @@ const Dashboard = () => {
     fetchVideo(videoIdInput.trim());
   };
 
-  const handleComment = () => {
-    if (!comment) return;
-    axios
-      .post(
-        `/api/video/${video.videoId}/comments`,
-        { text: comment },
-        { headers: { "x-user-id": userId } }
-      )
-      .then(() => {
-        setComment("");
-        fetchComments(video.videoId);
-      })
-      .catch((err) => console.error("Error posting comment:", err));
-  };
+const handleComment = () => {
+  if (!comment) return;
+  axios
+    .post(
+      `/api/video/${video.videoId}/comments`,
+      { text: comment },
+      { headers: { "x-user-id": userId } }
+    )
+    .then(() => {
+      setComment("");
+      fetchComments(video.videoId);
+    })
+    .catch((err) => console.error("Error posting comment:", err));
+};
+
 
   const handleReply = (parentId, replyText) => {
     axios
@@ -127,16 +128,18 @@ const Dashboard = () => {
       .catch((err) => console.error("Error updating video:", err));
   };
 
-  const handleNoteUpdate = () => {
-    axios
-      .post(
-        `/api/video/${video.videoId}/notes`,
-        { note },
-        { headers: { "x-user-id": userId } }
-      )
-      .then(() => alert("Note saved"))
-      .catch((err) => console.error("Error saving note:", err));
-  };
+
+const handleNoteUpdate = () => {
+  axios
+    .post(
+      `/api/video/${video.videoId}/notes`,
+      { content: note }, // Changed from { note } to { content: note }
+      { headers: { "x-user-id": userId } }
+    )
+    .then(() => alert("Note saved"))
+    .catch((err) => console.error("Error saving note:", err));
+};
+
 
   return (
     <div className="min-h-screen bg-gray-50">

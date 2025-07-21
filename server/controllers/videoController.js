@@ -70,6 +70,7 @@ const addComment = async (req, res) => {
   res.status(201).json(comment);
 };
 
+
 const deleteComment = async (req, res) => {
   const { commentId } = req.params;
   const userId = req.headers["x-user-id"];
