@@ -1,8 +1,10 @@
 import React, { useState } from "react";
-import { Search, Edit3, MessageCircle, StickyNote, Send, Reply, Trash2, Save, Video } from "lucide-react";
+import { Search, Edit3, MessageCircle, StickyNote, Send, Reply, Trash2, Save, Video, LogOut } from "lucide-react";
 import axios from "../services/api";
+import { useNavigate } from "react-router-dom";
 
 const Dashboard = () => {
+  const navigate = useNavigate();
   const [videoIdInput, setVideoIdInput] = useState("");
   const [video, setVideo] = useState(null);
   const [userId, setUserId] = useState(localStorage.getItem("userId") || "");
@@ -11,6 +13,21 @@ const Dashboard = () => {
   const [note, setNote] = useState("");
   const [titleEdit, setTitleEdit] = useState("");
   const [descEdit, setDescEdit] = useState("");
+
+  const handleLogout = () => {
+    axios
+      .get("/logout")
+      .then(() => {
+        localStorage.removeItem("userId");
+        localStorage.removeItem("access_token");
+        setUserId("");
+        navigate("/");
+      })
+      .catch((err) => {
+        console.error("Logout failed:", err);
+        alert("Logout failed. Please try again.");
+      });
+  };
 
   const fetchVideo = (id) => {
     axios
@@ -124,15 +141,24 @@ const Dashboard = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100">
       <div className="container mx-auto px-4 py-8 max-w-4xl">
-        {/* Header */}
-        <div className="text-center mb-12">
-          <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-red-500 to-pink-500 rounded-2xl mb-4 shadow-lg">
+        {/* Header */} 
+        <div className="flex justify-between items-center mb-12">
+          <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-red-500 to-pink-500 rounded-2xl shadow-lg">
             <Video className="w-8 h-8 text-white" />
           </div>
-          <h1 className="text-4xl font-bold bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 bg-clip-text text-transparent mb-2">
-            YouTube Companion Dashboard
-          </h1>
-          <p className="text-gray-600 text-lg">Manage your video content with ease</p>
+          <div>
+            <h1 className="text-4xl font-bold bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 bg-clip-text text-transparent mb-2">
+              YouTube Companion Dashboard
+            </h1>
+            <p className="text-gray-600 text-lg">Manage your video content with ease</p>
+          </div>
+          <button
+            onClick={handleLogout}
+            className="flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-2xl font-semibold text-lg transition-all duration-300 transform hover:scale-[1.02] shadow-lg hover:shadow-xl"
+          >
+            <LogOut className="w-5 h-5" />
+            Logout
+          </button>
         </div>
 
         {/* Search Section */}
