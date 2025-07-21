@@ -12,7 +12,7 @@ const {
 } = require("../controllers/videoController");
 
 
-router.use(authMiddleware);
+
 
 
 
