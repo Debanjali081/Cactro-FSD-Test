@@ -57,6 +57,15 @@ const addComment = async (req, res) => {
   const { videoId } = req.params;
   const userId = req.headers["x-user-id"];
   const { text } = req.body;
+
+  if (!userId) {
+    return res.status(400).json({ error: "Missing user ID in headers" });
+  }
+
+  if (!mongoose.Types.ObjectId.isValid(userId)) {
+    return res.status(400).json({ error: "Invalid user ID format" });
+  }
+
   const comment = await commentDao.createComment({ videoId, userId, text });
   res.status(201).json(comment);
 };
