@@ -139,73 +139,69 @@ const Dashboard = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100">
-      <div className="container mx-auto px-4 py-8 max-w-4xl">
-        {/* Header */} 
-        <div className="flex justify-between items-center mb-12">
-          <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-red-500 to-pink-500 rounded-2xl shadow-lg">
-            <Video className="w-8 h-8 text-white" />
+    <div className="min-h-screen bg-gray-50">
+      <div className="container mx-auto px-4 py-6 max-w-5xl">
+        {/* Header */}
+        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-6">
+          <div className="flex justify-between items-center">
+            <div className="flex items-center gap-4">
+              <div className="flex items-center justify-center w-12 h-12 bg-red-500 rounded-lg">
+                <Video className="w-6 h-6 text-white" />
+              </div>
+              <div>
+                <h1 className="text-2xl font-bold text-gray-900">YouTube Companion Dashboard</h1>
+                <p className="text-gray-600">Manage your video content efficiently</p>
+              </div>
+            </div>
+            <button
+              onClick={handleLogout}
+              className="flex items-center gap-2 bg-gray-600 hover:bg-gray-700 text-white px-4 py-2 rounded-lg font-medium transition-colors duration-200"
+            >
+              <LogOut className="w-4 h-4" />
+              Logout
+            </button>
           </div>
-          <div>
-            <h1 className="text-4xl font-bold bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 bg-clip-text text-transparent mb-2">
-              YouTube Companion Dashboard
-            </h1>
-            <p className="text-gray-600 text-lg">Manage your video content with ease</p>
-          </div>
-          <button
-            onClick={handleLogout}
-            className="flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-2xl font-semibold text-lg transition-all duration-300 transform hover:scale-[1.02] shadow-lg hover:shadow-xl"
-          >
-            <LogOut className="w-5 h-5" />
-            Logout
-          </button>
         </div>
 
         {/* Search Section */}
-        <div className="bg-white rounded-3xl shadow-xl border border-gray-100 p-8 mb-8">
-          <div className="flex items-center gap-3 mb-6">
-            <div className="p-2 bg-blue-100 rounded-xl">
-              <Search className="w-6 h-6 text-blue-600" />
-            </div>
-            <h2 className="text-2xl font-bold text-gray-900">Fetch Video Information</h2>
+        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-6">
+          <div className="flex items-center gap-3 mb-4">
+            <Search className="w-5 h-5 text-blue-600" />
+            <h2 className="text-lg font-semibold text-gray-900">Fetch Video Information</h2>
           </div>
           
           <form onSubmit={handleSubmit} className="space-y-4">
-            <div className="relative">
-              <input
-                type="text"
-                placeholder="Enter YouTube Video ID (e.g., dQw4w9WgXcQ)"
-                className="w-full px-6 py-4 border-2 border-gray-200 rounded-2xl focus:border-blue-500 focus:outline-none transition-all duration-300 text-lg placeholder-gray-400"
-                value={videoIdInput}
-                onChange={(e) => setVideoIdInput(e.target.value)}
-              />
-            </div>
+            <input
+              type="text"
+              placeholder="Enter YouTube Video ID (e.g., dQw4w9WgXcQ)"
+              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-colors"
+              value={videoIdInput}
+              onChange={(e) => setVideoIdInput(e.target.value)}
+            />
             <button
               type="submit"
-              className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white px-8 py-4 rounded-2xl font-semibold text-lg transition-all duration-300 transform hover:scale-[1.02] shadow-lg hover:shadow-xl"
+              className="w-full bg-blue-600 hover:bg-blue-700 text-white px-4 py-3 rounded-lg font-medium transition-colors duration-200 flex items-center justify-center gap-2"
             >
-              <Search className="w-5 h-5 inline mr-2" />
+              <Search className="w-4 h-4" />
               Fetch Video Information
             </button>
           </form>
         </div>
 
         {video && (
-          <div className="space-y-8">
+          <div className="space-y-6">
             {/* Video Info Section */}
-            <div className="bg-white rounded-3xl shadow-xl border border-gray-100 p-8">
-              <div className="flex items-center gap-3 mb-6">
-                <div className="p-2 bg-green-100 rounded-xl">
-                  <Edit3 className="w-6 h-6 text-green-600" />
-                </div>
-                <h3 className="text-2xl font-bold text-gray-900">Video Information</h3>
+            <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+              <div className="flex items-center gap-3 mb-4">
+                <Edit3 className="w-5 h-5 text-green-600" />
+                <h3 className="text-lg font-semibold text-gray-900">Video Information</h3>
               </div>
               
-              <div className="space-y-6">
+              <div className="space-y-4">
                 <div>
-                  <label className="block text-sm font-semibold text-gray-700 mb-2">Video Title</label>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Video Title</label>
                   <input
-                    className="w-full px-6 py-4 border-2 border-gray-200 rounded-2xl focus:border-green-500 focus:outline-none transition-all duration-300 text-lg"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 outline-none transition-colors"
                     value={titleEdit}
                     onChange={(e) => setTitleEdit(e.target.value)}
                     placeholder="Enter video title"
@@ -213,9 +209,9 @@ const Dashboard = () => {
                 </div>
                 
                 <div>
-                  <label className="block text-sm font-semibold text-gray-700 mb-2">Video Description</label>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Video Description</label>
                   <textarea
-                    className="w-full px-6 py-4 border-2 border-gray-200 rounded-2xl focus:border-green-500 focus:outline-none transition-all duration-300 text-lg min-h-[120px] resize-none"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 outline-none transition-colors min-h-[100px] resize-vertical"
                     value={descEdit}
                     onChange={(e) => setDescEdit(e.target.value)}
                     placeholder="Enter video description"
@@ -224,48 +220,47 @@ const Dashboard = () => {
                 
                 <button
                   onClick={handleUpdateVideo}
-                  className="bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white px-8 py-4 rounded-2xl font-semibold text-lg transition-all duration-300 transform hover:scale-[1.02] shadow-lg hover:shadow-xl"
+                  className="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg font-medium transition-colors duration-200 flex items-center gap-2"
                 >
-                  <Save className="w-5 h-5 inline mr-2" />
+                  <Save className="w-4 h-4" />
                   Update Video
                 </button>
               </div>
             </div>
 
             {/* Comments Section */}
-            <div className="bg-white rounded-3xl shadow-xl border border-gray-100 p-8">
-              <div className="flex items-center gap-3 mb-6">
-                <div className="p-2 bg-purple-100 rounded-xl">
-                  <MessageCircle className="w-6 h-6 text-purple-600" />
-                </div>
-                <h4 className="text-2xl font-bold text-gray-900">Comments</h4>
+            <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+              <div className="flex items-center gap-3 mb-4">
+                <MessageCircle className="w-5 h-5 text-purple-600" />
+                <h4 className="text-lg font-semibold text-gray-900">Comments</h4>
               </div>
               
-              <div className="space-y-6">
-                <div className="flex gap-4">
+              <div className="space-y-4">
+                <div className="flex gap-3">
                   <input
-                    className="flex-1 px-6 py-4 border-2 border-gray-200 rounded-2xl focus:border-purple-500 focus:outline-none transition-all duration-300 text-lg"
+                    className="flex-1 px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-purple-500 outline-none transition-colors"
                     placeholder="Share your thoughts..."
                     value={comment}
                     onChange={(e) => setComment(e.target.value)}
                   />
                   <button
                     onClick={handleComment}
-                    className="bg-gradient-to-r from-purple-600 to-violet-600 hover:from-purple-700 hover:to-violet-700 text-white px-8 py-4 rounded-2xl font-semibold transition-all duration-300 transform hover:scale-[1.02] shadow-lg hover:shadow-xl"
+                    className="bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-lg font-medium transition-colors duration-200 flex items-center gap-2"
                   >
-                    <Send className="w-5 h-5" />
+                    <Send className="w-4 h-4" />
+                    Post
                   </button>
                 </div>
                 
-                <div className="space-y-4">
+                <div className="space-y-3">
                   {comments.map((c) => (
-                    <div key={c._id} className="bg-gradient-to-r from-gray-50 to-gray-100 rounded-2xl p-6 border border-gray-200">
-                      <div className="flex justify-between items-start mb-4">
-                        <p className="text-gray-800 text-lg leading-relaxed flex-1">{c.text}</p>
+                    <div key={c._id} className="bg-gray-50 rounded-lg p-4 border border-gray-200">
+                      <div className="flex justify-between items-start mb-3">
+                        <p className="text-gray-800 flex-1">{c.text}</p>
                         {c.userId === userId && (
                           <button
                             onClick={() => handleDelete(c._id)}
-                            className="ml-4 p-2 text-red-500 hover:text-red-700 hover:bg-red-50 rounded-xl transition-all duration-200"
+                            className="ml-3 p-1 text-red-500 hover:text-red-700 hover:bg-red-50 rounded transition-colors"
                           >
                             <Trash2 className="w-4 h-4" />
                           </button>
@@ -273,10 +268,10 @@ const Dashboard = () => {
                       </div>
                       
                       {c.replies?.map((r) => (
-                        <div key={r._id} className="ml-6 pl-6 border-l-2 border-gray-300 py-2">
+                        <div key={r._id} className="ml-4 pl-4 border-l-2 border-gray-300 py-2">
                           <div className="flex items-center gap-2 text-gray-600">
                             <Reply className="w-4 h-4" />
-                            <span className="text-base">{r.text}</span>
+                            <span className="text-sm">{r.text}</span>
                           </div>
                         </div>
                       ))}
@@ -289,19 +284,17 @@ const Dashboard = () => {
             </div>
 
             {/* Notes Section */}
-            <div className="bg-white rounded-3xl shadow-xl border border-gray-100 p-8">
-              <div className="flex items-center gap-3 mb-6">
-                <div className="p-2 bg-yellow-100 rounded-xl">
-                  <StickyNote className="w-6 h-6 text-yellow-600" />
-                </div>
-                <h4 className="text-2xl font-bold text-gray-900">Personal Notes</h4>
+            <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+              <div className="flex items-center gap-3 mb-4">
+                <StickyNote className="w-5 h-5 text-yellow-600" />
+                <h4 className="text-lg font-semibold text-gray-900">Personal Notes</h4>
               </div>
               
-              <div className="space-y-6">
+              <div className="space-y-4">
                 <div>
-                  <label className="block text-sm font-semibold text-gray-700 mb-2">Your Notes</label>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Your Notes</label>
                   <textarea
-                    className="w-full px-6 py-4 border-2 border-gray-200 rounded-2xl focus:border-yellow-500 focus:outline-none transition-all duration-300 text-lg min-h-[150px] resize-none"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 outline-none transition-colors min-h-[120px] resize-vertical"
                     value={note}
                     onChange={(e) => setNote(e.target.value)}
                     placeholder="Jot down your ideas, thoughts, and reminders for this video..."
@@ -310,9 +303,9 @@ const Dashboard = () => {
                 
                 <button
                   onClick={handleNoteUpdate}
-                  className="bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-yellow-600 hover:to-orange-600 text-white px-8 py-4 rounded-2xl font-semibold text-lg transition-all duration-300 transform hover:scale-[1.02] shadow-lg hover:shadow-xl"
+                  className="bg-yellow-600 hover:bg-yellow-700 text-white px-6 py-3 rounded-lg font-medium transition-colors duration-200 flex items-center gap-2"
                 >
-                  <Save className="w-5 h-5 inline mr-2" />
+                  <Save className="w-4 h-4" />
                   Save Notes
                 </button>
               </div>
@@ -327,21 +320,22 @@ const Dashboard = () => {
 const ReplyBox = ({ parentId, onReply }) => {
   const [reply, setReply] = useState("");
   return (
-    <div className="mt-4 flex gap-3">
+    <div className="mt-3 flex gap-2">
       <input
-        className="flex-1 px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:outline-none transition-all duration-300"
+        className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-colors text-sm"
         placeholder="Write a reply..."
         value={reply}
         onChange={(e) => setReply(e.target.value)}
       />
       <button
-        className="bg-gradient-to-r from-blue-500 to-indigo-500 hover:from-blue-600 hover:to-indigo-600 text-white px-6 py-3 rounded-xl font-semibold transition-all duration-300 transform hover:scale-[1.02] shadow-md hover:shadow-lg"
+        className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-medium transition-colors duration-200 flex items-center gap-1 text-sm"
         onClick={() => {
           onReply(parentId, reply);
           setReply("");
         }}
       >
-        <Reply className="w-4 h-4" />
+        <Reply className="w-3 h-3" />
+        Reply
       </button>
     </div>
   );
