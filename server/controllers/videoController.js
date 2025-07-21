@@ -8,7 +8,6 @@ const getVideoDetails = async (req, res) => {
   const videoId = req.params.videoId;
   try {
     const apiKey = process.env.YOUTUBE_API_KEY;
-    console.log("YOUTUBE_API_KEY:", apiKey);
     const response = await axios.get("https://www.googleapis.com/youtube/v3/videos", {
       params: { part: "snippet", id: videoId, key: apiKey },
     });
