@@ -12,6 +12,10 @@ const {
 } = require("../controllers/videoController");
 
 
+router.use(authMiddleware);
+
+
+
 router.get("/:videoId", getVideoDetails);
 
 router.put("/:videoId/update", updateVideoDetails);
